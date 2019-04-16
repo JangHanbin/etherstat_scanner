@@ -8,5 +8,7 @@ class MysqlController:
     def insert_values(self,values):
         sql = 'INSERT INTO PROPAGATIONS (secs, percent, freq, cumulative, time_stamp) VALUES (%s, %s ,%s, %s, %s)'
 
-        self.curs.execute(sql, tuple(values))
-        self.conn.commit()
+        # values has a list in list
+        for value in values:
+            self.curs.execute(sql, tuple(value))
+            self.conn.commit()
